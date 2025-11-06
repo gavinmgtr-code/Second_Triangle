@@ -46,10 +46,16 @@ const quickViewDetails = document.getElementById('quick-view-details');
 // Global State
 let currentSlide = 0;
 let selectedSizes = {};
+let cart = JSON.parse(localStorage.getItem('secondTriangleCart')) || [];
+let isMobile = window.innerWidth <= 768;
+let isTablet = window.innerWidth > 768 && window.innerWidth <= 992;
+let slideInterval;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
-    // Splash screen transition - waktu diperpendek
+    initResponsiveFeatures();
+    
+    // Splash screen transition
     setTimeout(function() {
         splashScreen.classList.add('hidden');
         mainWebsite.classList.add('visible');
@@ -58,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             splashScreen.style.display = 'none';
         }, 1000);
-    }, 3000); // Total splash screen duration: 3 seconds (dikurangi dari 5 detik)
+    }, 3000);
     
     updateCartDisplay();
     initTestimonialSlider();
@@ -69,7 +75,91 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inisialisasi pemilihan ukuran
     initSizeSelection();
+    
+    // Inisialisasi event listeners untuk responsivitas
+    initResponsiveEventListeners();
 });
+
+// Inisialisasi fitur responsif
+function initResponsiveFeatures() {
+    // Deteksi perangkat mobile/tablet
+    checkDeviceType();
+    
+    // Sesuaikan animasi berdasarkan preferensi pengguna
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+    }
+    
+    // Optimasi untuk layar sentuh
+    if (isMobile) {
+        document.body.classList.add('touch-device');
+    }
+}
+
+// Inisialisasi event listeners responsif
+function initResponsiveEventListeners() {
+    // Handle resize events dengan debounce
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            checkDeviceType();
+            updateResponsiveFeatures();
+        }, 250);
+    });
+    
+    // Handle orientation change
+    window.addEventListener('orientationchange', function() {
+        setTimeout(function() {
+            checkDeviceType();
+            updateResponsiveFeatures();
+        }, 500);
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (isMobile && mainNav.classList.contains('active') && 
+            !e.target.closest('nav') && !e.target.closest('.menu-toggle')) {
+            mainNav.classList.remove('active');
+        }
+    });
+    
+    // Handle escape key untuk modal
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllModals();
+        }
+    });
+}
+
+// Deteksi tipe perangkat
+function checkDeviceType() {
+    const width = window.innerWidth;
+    isMobile = width <= 768;
+    isTablet = width > 768 && width <= 992;
+    
+    // Update body classes untuk styling CSS
+    document.body.classList.toggle('mobile', isMobile);
+    document.body.classList.toggle('tablet', isTablet);
+    document.body.classList.toggle('desktop', !isMobile && !isTablet);
+}
+
+// Update fitur berdasarkan tipe perangkat
+function updateResponsiveFeatures() {
+    // Reset testimonial slider position jika perlu
+    if (testimonialTrack) {
+        testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+    
+    // Adjust cart sidebar width untuk mobile
+    if (cartSidebar) {
+        if (isMobile) {
+            cartSidebar.style.width = '100%';
+        } else {
+            cartSidebar.style.width = '400px';
+        }
+    }
+}
 
 // Preload images untuk meningkatkan performa
 function preloadImages() {
@@ -116,19 +206,28 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Mobile menu toggle
-menuToggle.addEventListener('click', function() {
+// Mobile menu toggle dengan improved touch handling
+menuToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
     mainNav.classList.toggle('active');
+    
+    // Prevent body scroll when menu is open on mobile
+    if (isMobile) {
+        document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : 'auto';
+    }
 });
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', function() {
-        mainNav.classList.remove('active');
+        if (isMobile) {
+            mainNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     });
 });
 
-// Cart functionality
+// Cart functionality dengan improved mobile experience
 cartIcon.addEventListener('click', function() {
     cartSidebar.classList.add('active');
     overlay.classList.add('active');
@@ -136,19 +235,34 @@ cartIcon.addEventListener('click', function() {
 });
 
 closeCart.addEventListener('click', function() {
-    cartSidebar.classList.remove('active');
-    overlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    closeCartSidebar();
 });
 
 overlay.addEventListener('click', function() {
+    closeAllModals();
+});
+
+// Fungsi untuk menutup semua modal
+function closeAllModals() {
     cartSidebar.classList.remove('active');
     overlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
     checkoutModal.classList.remove('active');
     sizeGuideModal.classList.remove('active');
     quickViewModal.classList.remove('active');
-});
+    document.body.style.overflow = 'auto';
+    
+    // Juga tutup mobile menu
+    if (isMobile) {
+        mainNav.classList.remove('active');
+    }
+}
+
+// Fungsi khusus untuk menutup cart sidebar
+function closeCartSidebar() {
+    cartSidebar.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
 
 // Checkout functionality
 checkoutBtn.addEventListener('click', function() {
@@ -175,26 +289,29 @@ cancelCheckout.addEventListener('click', function() {
     overlay.classList.remove('active');
 });
 
-// Size Guide functionality
+// Size Guide functionality dengan improved mobile layout
 sizeGuideLinks.forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         sizeGuideModal.classList.add('active');
         overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
     });
 });
 
 floatingSizeGuide.addEventListener('click', function() {
     sizeGuideModal.classList.add('active');
     overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
 });
 
 closeSizeGuide.addEventListener('click', function() {
     sizeGuideModal.classList.remove('active');
     overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
 });
 
-// Quick View functionality
+// Quick View functionality dengan responsive layout
 quickViewBtns.forEach(btn => {
     btn.addEventListener('click', function() {
         const productCard = this.closest('.product-card');
@@ -206,7 +323,7 @@ quickViewBtns.forEach(btn => {
         // Set gambar produk
         quickViewImage.style.backgroundImage = productImage;
         
-        // Set detail produk
+        // Set detail produk dengan layout responsif
         quickViewDetails.innerHTML = `
             <h3>${productTitle}</h3>
             <div class="product-price">${productPrice}</div>
@@ -224,7 +341,7 @@ quickViewBtns.forEach(btn => {
                 <div class="size-guide-link">Size Guide</div>
             </div>
             
-            <button class="btn add-to-cart" data-product="${productTitle}" data-price="${productPrice.replace('$', '')}" style="margin-top: 20px;">Add to Cart</button>
+            <button class="btn add-to-cart quick-view-add-to-cart" data-product="${productTitle}" data-price="${productPrice.replace('$', '')}" style="margin-top: 20px; width: 100%;">Add to Cart</button>
         `;
         
         // Inisialisasi ulang pemilihan ukuran untuk quick view
@@ -252,30 +369,39 @@ quickViewBtns.forEach(btn => {
         });
         
         // Inisialisasi ulang tombol add to cart untuk quick view
-        const quickViewAddToCart = quickViewDetails.querySelector('.add-to-cart');
+        const quickViewAddToCart = quickViewDetails.querySelector('.quick-view-add-to-cart');
         quickViewAddToCart.addEventListener('click', function() {
             const product = this.getAttribute('data-product');
             const price = parseFloat(this.getAttribute('data-price'));
             
-            addToCart(product, price);
-            showNotification(`${product} added to cart!`);
+            // Validasi ukuran untuk quick view
+            if (!selectedSizes[product]) {
+                showNotification('Please select a size before adding to cart');
+                return;
+            }
+            
+            addToCart(product, price, selectedSizes[product]);
+            showNotification(`${product} (Size: ${selectedSizes[product]}) added to cart!`);
             
             // Tutup quick view setelah menambahkan ke keranjang
             quickViewModal.classList.remove('active');
             overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
         });
         
         quickViewModal.classList.add('active');
         overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
     });
 });
 
 closeQuickView.addEventListener('click', function() {
     quickViewModal.classList.remove('active');
     overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
 });
 
-// Product filtering
+// Product filtering dengan improved mobile experience
 filterBtns.forEach(btn => {
     btn.addEventListener('click', function() {
         // Remove active class from all buttons
@@ -288,10 +414,25 @@ filterBtns.forEach(btn => {
         productCards.forEach(card => {
             if (filter === 'all' || card.getAttribute('data-category') === filter) {
                 card.style.display = 'block';
+                // Trigger animation
+                card.classList.remove('fade-in');
+                void card.offsetWidth; // Trigger reflow
+                card.classList.add('fade-in');
             } else {
                 card.style.display = 'none';
             }
         });
+        
+        // Scroll ke produk section setelah filter (mobile)
+        if (isMobile) {
+            const productsSection = document.getElementById('products');
+            if (productsSection) {
+                window.scrollTo({
+                    top: productsSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
     });
 });
 
@@ -314,7 +455,7 @@ addToCartBtns.forEach(btn => {
     });
 });
 
-// Wishlist functionality
+// Wishlist functionality dengan improved touch feedback
 wishlistBtns.forEach(btn => {
     btn.addEventListener('click', function() {
         this.classList.toggle('active');
@@ -329,10 +470,18 @@ wishlistBtns.forEach(btn => {
         } else {
             showNotification(`${product} removed from wishlist!`);
         }
+        
+        // Tambah animasi feedback untuk mobile
+        if (isMobile) {
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 300);
+        }
     });
 });
 
-// Volume navigation
+// Volume navigation dengan improved mobile experience
 volumeBtns.forEach(btn => {
     btn.addEventListener('click', function(e) {
         e.preventDefault();
@@ -353,31 +502,38 @@ volumeBtns.forEach(btn => {
             volume3Page.classList.add('active');
         }
         
-        // Scroll to top
-        window.scrollTo(0, 0);
+        // Scroll to top dengan behavior yang berbeda berdasarkan perangkat
+        window.scrollTo({
+            top: 0,
+            behavior: isMobile ? 'auto' : 'smooth'
+        });
+        
+        // Tutup mobile menu jika terbuka
+        if (isMobile) {
+            mainNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     });
 });
 
-// Home button functionality for volume pages
-homeBtnVolume1.addEventListener('click', function() {
-    volume1Page.classList.remove('active');
-    homePage.classList.add('active');
-    window.scrollTo(0, 0);
+// Home button functionality untuk volume pages
+[homeBtnVolume1, homeBtnVolume2, homeBtnVolume3].forEach(btn => {
+    if (btn) {
+        btn.addEventListener('click', function() {
+            volume1Page.classList.remove('active');
+            volume2Page.classList.remove('active');
+            volume3Page.classList.remove('active');
+            homePage.classList.add('active');
+            
+            window.scrollTo({
+                top: 0,
+                behavior: isMobile ? 'auto' : 'smooth'
+            });
+        });
+    }
 });
 
-homeBtnVolume2.addEventListener('click', function() {
-    volume2Page.classList.remove('active');
-    homePage.classList.add('active');
-    window.scrollTo(0, 0);
-});
-
-homeBtnVolume3.addEventListener('click', function() {
-    volume3Page.classList.remove('active');
-    homePage.classList.add('active');
-    window.scrollTo(0, 0);
-});
-
-// Navigation links
+// Navigation links dengan improved mobile experience
 navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -392,7 +548,7 @@ navLinks.forEach(link => {
         // Show home page
         homePage.classList.add('active');
         
-        // Scroll to section if it's a home page section
+        // Scroll to section jika itu adalah section home page
         if (page !== 'home') {
             const targetSection = document.getElementById(page);
             if (targetSection) {
@@ -402,37 +558,98 @@ navLinks.forEach(link => {
                 });
             }
         } else {
-            window.scrollTo(0, 0);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
         
         // Update active nav link
         navLinks.forEach(nav => nav.classList.remove('active'));
         this.classList.add('active');
+        
+        // Tutup mobile menu setelah klik (mobile)
+        if (isMobile) {
+            mainNav.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
     });
 });
 
-// Testimonial slider
+// Testimonial slider dengan improved mobile controls
 function initTestimonialSlider() {
     // Set initial position
     updateTestimonialSlider();
     
-    // Auto slide every 5 seconds
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % testimonialSlides.length;
-        updateTestimonialSlider();
-    }, 5000);
+    // Auto slide hanya di desktop/tablet, bukan mobile
+    if (!isMobile) {
+        slideInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % testimonialSlides.length;
+            updateTestimonialSlider();
+        }, 5000);
+    }
     
-    // Dot navigation
+    // Dot navigation dengan improved touch targets untuk mobile
     sliderDots.forEach((dot, index) => {
+        // Buat touch target lebih besar di mobile
+        if (isMobile) {
+            dot.style.width = '16px';
+            dot.style.height = '16px';
+        }
+        
         dot.addEventListener('click', function() {
             currentSlide = index;
             updateTestimonialSlider();
+            
+            // Reset interval
+            if (slideInterval) {
+                clearInterval(slideInterval);
+                if (!isMobile) {
+                    slideInterval = setInterval(() => {
+                        currentSlide = (currentSlide + 1) % testimonialSlides.length;
+                        updateTestimonialSlider();
+                    }, 5000);
+                }
+            }
         });
     });
+    
+    // Tambah swipe functionality untuk mobile
+    if (isMobile && testimonialTrack) {
+        let startX = 0;
+        let endX = 0;
+        
+        testimonialTrack.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        
+        testimonialTrack.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe kiri - next
+                    currentSlide = (currentSlide + 1) % testimonialSlides.length;
+                } else {
+                    // Swipe kanan - previous
+                    currentSlide = (currentSlide - 1 + testimonialSlides.length) % testimonialSlides.length;
+                }
+                updateTestimonialSlider();
+            }
+        }
+    }
 }
 
 function updateTestimonialSlider() {
-    testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+    if (testimonialTrack) {
+        testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
     
     // Update active dot
     sliderDots.forEach((dot, index) => {
@@ -440,9 +657,14 @@ function updateTestimonialSlider() {
     });
 }
 
-// Scroll animations
+// Scroll animations dengan optimized performance
 function initScrollAnimations() {
     const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const observerOptions = {
+        threshold: isMobile ? 0.05 : 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -451,7 +673,7 @@ function initScrollAnimations() {
                 entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
     
     fadeElements.forEach(el => {
         el.style.opacity = 0;
@@ -461,20 +683,165 @@ function initScrollAnimations() {
     });
 }
 
-// Notification system
+// Cart functionality
+function addToCart(product, price, size = 'M') {
+    const existingItem = cart.find(item => item.product === product && item.size === size);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            product: product,
+            price: price,
+            size: size,
+            quantity: 1
+        });
+    }
+    
+    localStorage.setItem('secondTriangleCart', JSON.stringify(cart));
+    updateCartDisplay();
+}
+
+function updateCartDisplay() {
+    // Update cart items
+    if (cartItems) {
+        cartItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+        } else {
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-details">
+                        <h4>${item.product}</h4>
+                        <p>Size: ${item.size} | $${item.price}</p>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="quantity-btn minus" data-product="${item.product}" data-size="${item.size}">-</button>
+                        <span class="quantity">${item.quantity}</span>
+                        <button class="quantity-btn plus" data-product="${item.product}" data-size="${item.size}">+</button>
+                        <button class="remove-btn" data-product="${item.product}" data-size="${item.size}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Add event listeners untuk quantity controls
+            document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    updateQuantity(this.getAttribute('data-product'), this.getAttribute('data-size'), -1);
+                });
+            });
+            
+            document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    updateQuantity(this.getAttribute('data-product'), this.getAttribute('data-size'), 1);
+                });
+            });
+            
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    removeFromCart(this.getAttribute('data-product'), this.getAttribute('data-size'));
+                });
+            });
+        }
+    }
+    
+    // Update cart total
+    if (cartTotal) {
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+    }
+    
+    // Update cart count
+    if (cartCount) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+        cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+}
+
+function updateQuantity(product, size, change) {
+    const item = cart.find(item => item.product === product && item.size === size);
+    if (item) {
+        item.quantity += change;
+        
+        if (item.quantity <= 0) {
+            removeFromCart(product, size);
+        } else {
+            localStorage.setItem('secondTriangleCart', JSON.stringify(cart));
+            updateCartDisplay();
+        }
+    }
+}
+
+function removeFromCart(product, size) {
+    cart = cart.filter(item => !(item.product === product && item.size === size));
+    localStorage.setItem('secondTriangleCart', JSON.stringify(cart));
+    updateCartDisplay();
+    showNotification('Item removed from cart');
+}
+
+// Notification system dengan improved mobile positioning
 function showNotification(message) {
+    if (!notification) return;
+    
     notification.textContent = message;
     notification.classList.add('show');
+    
+    // Position berbeda untuk mobile
+    if (isMobile) {
+        notification.style.bottom = '80px'; // Above floating action button
+    } else {
+        notification.style.bottom = '30px';
+    }
     
     setTimeout(() => {
         notification.classList.remove('show');
     }, 3000);
 }
 
-// Newsletter form submission
-document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = this.querySelector('.newsletter-input').value;
-    showNotification(`Thank you for subscribing with ${email}!`);
-    this.reset();
-});
+// Newsletter form submission dengan improved mobile experience
+const newsletterForm = document.querySelector('.newsletter-form');
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = this.querySelector('.newsletter-input');
+        const email = emailInput.value;
+        
+        if (email && isValidEmail(email)) {
+            showNotification(`Thank you for subscribing with ${email}!`);
+            this.reset();
+        } else {
+            showNotification('Please enter a valid email address');
+        }
+    });
+}
+
+// Email validation helper
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Optimasi performa untuk mobile - lazy loading images
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+    
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
