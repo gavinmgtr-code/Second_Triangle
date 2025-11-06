@@ -63,31 +63,3 @@ document.addEventListener('DOMContentLoaded', function() {
     initProductCardAnimations();
     initButtonAnimations();
 });
-
-// CSS untuk efek ripple (tambahkan ke style.css)
-const rippleStyles = `
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.7);
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
-}
-
-@keyframes ripple-animation {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-.btn {
-    position: relative;
-    overflow: hidden;
-}
-`;
-
-// Tambahkan styles ke document
-const styleSheet = document.createElement('style');
-styleSheet.textContent = rippleStyles;
-document.head.appendChild(styleSheet);
