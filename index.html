@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Triangle - Premium Streetwear Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Skip link untuk aksesibilitas -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-logo" aria-label="Second Triangle Logo">ST</div>
+        <h1 class="splash-text">Second Triangle</h1>
+        <p class="splash-subtitle">Premium Clothing Brand</p>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Main Website Content -->
+    <div id="main-website">
+        <!-- Header -->
+        <header id="header">
+            <div class="container header-container">
+                <div class="logo">
+                    <div class="logo-icon" aria-label="Second Triangle Logo">ST</div>
+                    <div class="logo-text">SECOND TRIANGLE</div>
+                </div>
+                
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+                        <li><a href="#collections" class="nav-link" data-page="collections">Collections</a></li>
+                        <li><a href="#products" class="nav-link" data-page="products">Products</a></li>
+                        <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+                        <li><a href="#testimonials" class="nav-link" data-page="testimonials">Testimonials</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="nav-actions">
+                    <div class="nav-icon wishlist-icon" aria-label="Wishlist">
+                        <i class="far fa-heart"></i>
+                    </div>
+                    <div class="nav-icon cart-icon" id="cart-icon" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                    <div class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <!-- Nike-Style Hero Section -->
+            <section class="nike-hero" id="home">
+                <div class="container">
+                    <div class="nike-hero-content fade-in">
+                        <h1>PREMIUM STREETWEAR COLLECTION</h1>
+                        <p>Discover our exclusive collection of premium hoodies and streetwear designed for the modern urban lifestyle.</p>
+                        <div class="nike-hero-buttons">
+                            <a href="#collections" class="btn">Shop Collection</a>
+                            <a href="#products" class="btn btn-outline">New Arrivals</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nike-scroll-indicator">
+                    <span>Scroll to explore</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </section>
+
+            <!-- Nike-Style Product Showcase -->
+            <section class="nike-product-showcase">
+                <div class="container">
+                    <div class="showcase-header">
+                        <h2>VOLUME 1</h2>
+                        <p>Our debut collection featuring premium materials and minimalist design</p>
+                    </div>
+                    
+                    <div class="product-showcase">
+                        <div class="showcase-image float" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                        <div class="showcase-content">
+                            <h3>Premium Hoodie</h3>
+                            <p>Crafted with premium materials and attention to detail for unmatched comfort and style. Designed for the modern urban lifestyle.</p>
+                            
+                            <div class="showcase-features">
+                                <div class="feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <span>Premium Cotton Blend</span>
+                                </div>
+                                <div class="feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <span>Minimalist Design</span>
+                                </div>
+                                <div class="feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <span>Available in 5 Colors</span>
+                                </div>
+                            </div>
+                            
+                            <a href="#" class="btn glow" id="volume1-btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Collections Section -->
+            <section class="collections" id="collections">
+                <div class="container">
+                    <h2>Our Collections</h2>
+                    <div class="collection-grid">
+                        <div class="collection-card fade-in">
+                            <div class="collection-img" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                            <div class="collection-content">
+                                <h3>Volume 1</h3>
+                                <p>Our debut collection featuring premium hoodies with minimalist design and superior comfort.</p>
+                                <a href="#" class="btn volume-btn" data-volume="1">Explore</a>
+                            </div>
+                        </div>
+                        
+                        <div class="collection-card fade-in">
+                            <div class="collection-img" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1399&q=80');"></div>
+                            <div class="collection-content">
+                                <h3>Volume 2 <span class="coming-soon-badge">Coming Soon</span></h3>
+                                <p>Streetwear staples designed for everyday wear with attention to detail and comfort.</p>
+                                <a href="#" class="btn volume-btn" data-volume="2">Explore</a>
+                            </div>
+                        </div>
+                        
+                        <div class="collection-card fade-in">
+                            <div class="collection-img" style="background-image: url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80');"></div>
+                            <div class="collection-content">
+                                <h3>Volume 3 <span class="coming-soon-badge">Coming Soon</span></h3>
+                                <p>Exclusive designs with limited availability. Get yours before they're gone forever.</p>
+                                <a href="#" class="btn volume-btn" data-volume="3">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section class="products" id="products">
+                <div class="container">
+                    <h2>Featured Products</h2>
+                    
+                    <div class="product-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="hoodie">Hoodies</button>
+                        <button class="filter-btn" data-filter="tshirt">T-Shirts</button>
+                        <button class="filter-btn" data-filter="accessories">Accessories</button>
+                    </div>
+                    
+                    <div class="product-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card fade-in" data-category="hoodie">
+                            <div class="product-badge">New</div>
+                            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                                <div class="product-actions">
+                                    <button class="action-btn wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+                                    <button class="action-btn quick-view" aria-label="Quick View"><i class="far fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">Premium Hoodie - Black</h3>
+                                <div class="product-price">$89.99</div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                
+                                <div class="size-selector">
+                                    <p>Select Size:</p>
+                                    <div class="size-options">
+                                        <div class="size-option" data-size="S">S</div>
+                                        <div class="size-option" data-size="M">M</div>
+                                        <div class="size-option" data-size="L">L</div>
+                                        <div class="size-option" data-size="XL">XL</div>
+                                    </div>
+                                    <div class="size-guide-link">Size Guide</div>
+                                </div>
+                                
+                                <button class="btn add-to-cart" data-product="Premium Hoodie - Black" data-price="89.99">Add to Cart</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="product-card fade-in" data-category="hoodie">
+                            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1544966503-7cc5ac882d5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');">
+                                <div class="product-actions">
+                                    <button class="action-btn wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+                                    <button class="action-btn quick-view" aria-label="Quick View"><i class="far fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">Urban Zip Hoodie - Gray</h3>
+                                <div class="product-price">$94.99</div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                
+                                <div class="size-selector">
+                                    <p>Select Size:</p>
+                                    <div class="size-options">
+                                        <div class="size-option" data-size="S">S</div>
+                                        <div class="size-option" data-size="M">M</div>
+                                        <div class="size-option" data-size="L">L</div>
+                                        <div class="size-option" data-size="XL">XL</div>
+                                    </div>
+                                    <div class="size-guide-link">Size Guide</div>
+                                </div>
+                                
+                                <button class="btn add-to-cart" data-product="Urban Zip Hoodie - Gray" data-price="94.99">Add to Cart</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 3 -->
+                        <div class="product-card fade-in" data-category="tshirt">
+                            <div class="product-badge">Bestseller</div>
+                            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80');">
+                                <div class="product-actions">
+                                    <button class="action-btn wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+                                    <button class="action-btn quick-view" aria-label="Quick View"><i class="far fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">Essential Tee - White</h3>
+                                <div class="product-price">$39.99</div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                
+                                <div class="size-selector">
+                                    <p>Select Size:</p>
+                                    <div class="size-options">
+                                        <div class="size-option" data-size="S">S</div>
+                                        <div class="size-option" data-size="M">M</div>
+                                        <div class="size-option" data-size="L">L</div>
+                                        <div class="size-option" data-size="XL">XL</div>
+                                    </div>
+                                    <div class="size-guide-link">Size Guide</div>
+                                </div>
+                                
+                                <button class="btn add-to-cart" data-product="Essential Tee - White" data-price="39.99">Add to Cart</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 4 -->
+                        <div class="product-card fade-in" data-category="accessories">
+                            <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                                <div class="product-actions">
+                                    <button class="action-btn wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+                                    <button class="action-btn quick-view" aria-label="Quick View"><i class="far fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-title">Logo Beanie - Black</h3>
+                                <div class="product-price">$24.99</div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                
+                                <div class="size-selector">
+                                    <p>Select Size:</p>
+                                    <div class="size-options">
+                                        <div class="size-option" data-size="One Size">One Size</div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn add-to-cart" data-product="Logo Beanie - Black" data-price="24.99">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about" id="about">
+                <div class="container">
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h2>Our Story</h2>
+                            <p>Second Triangle was born from a passion for creating premium streetwear that combines style, comfort, and quality. Our mission is to provide clothing that not only looks good but feels exceptional to wear.</p>
+                            <p>Every piece in our collection is crafted with attention to detail, using high-quality materials that stand the test of time. We believe in sustainable fashion and ethical production practices.</p>
+                            
+                            <div class="about-features">
+                                <div class="feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-tag"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Premium Quality</h4>
+                                        <p>We use only the finest materials for our products.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-leaf"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Sustainable Fashion</h4>
+                                        <p>Committed to ethical and sustainable production.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-shipping-fast"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Fast Shipping</h4>
+                                        <p>Free shipping on orders over $100.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-img fade-in"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="testimonials" id="testimonials">
+                <div class="container">
+                    <h2>What Our Customers Say</h2>
+                    
+                    <div class="testimonial-slider">
+                        <div class="testimonial-track">
+                            <!-- Testimonial 1 -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-card">
+                                    <p class="testimonial-text">The quality of Second Triangle hoodies is unmatched. I've been wearing mine almost every day and it still looks brand new after several washes. Definitely worth the investment!</p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                                        <div class="author-info">
+                                            <h4>Alex Johnson</h4>
+                                            <p>New York</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 2 -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-card">
+                                    <p class="testimonial-text">I love the minimalist design of Second Triangle products. They're perfect for my everyday style and the comfort level is incredible. The customer service was also excellent!</p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');"></div>
+                                        <div class="author-info">
+                                            <h4>Sarah Miller</h4>
+                                            <p>Los Angeles</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 3 -->
+                            <div class="testimonial-slide">
+                                <div class="testimonial-card">
+                                    <p class="testimonial-text">As someone who's very particular about fit and fabric, I can confidently say that Second Triangle exceeds expectations. The attention to detail is remarkable.</p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/67.jpg');"></div>
+                                        <div class="author-info">
+                                            <h4>Michael Chen</h4>
+                                            <p>Chicago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="slider-nav">
+                            <div class="slider-dot active" data-slide="0"></div>
+                            <div class="slider-dot" data-slide="1"></div>
+                            <div class="slider-dot" data-slide="2"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter Section -->
+            <section class="newsletter">
+                <div class="container">
+                    <h2>Stay Updated</h2>
+                    <p>Subscribe to our newsletter to receive updates on new collections, exclusive offers, and style tips.</p>
+                    
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <!-- Volume 1 Page -->
+        <div id="volume1-page" class="volume-page">
+            <div class="container">
+                <div class="volume-header">
+                    <h2>Volume 1 Collection</h2>
+                    <button class="home-btn" id="home-btn-volume1">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                </div>
+                
+                <p class="volume-description">Our debut collection featuring premium hoodies with minimalist design and superior comfort. Each piece is crafted with attention to detail and made from high-quality materials for everyday wear.</p>
+                
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card fade-in" data-category="hoodie">
+                        <div class="product-badge">Bestseller</div>
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+                                <button class="action-btn quick-view" aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Premium Hoodie - Black</h3>
+                            <div class="product-price">$89.99</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            
+                            <div class="size-selector">
+                                <p>Select Size:</p>
+                                <div class="size-options">
+                                    <div class="size-option" data-size="S">S</div>
+                                    <div class="size-option" data-size="M">M</div>
+                                    <div class="size-option" data-size="L">L</div>
+                                    <div class="size-option" data-size="XL">XL</div>
+                                </div>
+                                <div class="size-guide-link">Size Guide</div>
+                            </div>
+                            
+                            <button class="btn add-to-cart" data-product="Premium Hoodie - Black" data-price="89.99">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card fade-in" data-category="hoodie">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1544966503-7cc5ac882d5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');">
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+                                <button class="action-btn quick-view" aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Urban Zip Hoodie - Gray</h3>
+                            <div class="product-price">$94.99</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            
+                            <div class="size-selector">
+                                <p>Select Size:</p>
+                                <div class="size-options">
+                                    <div class="size-option" data-size="S">S</div>
+                                    <div class="size-option" data-size="M">M</div>
+                                    <div class="size-option" data-size="L">L</div>
+                                    <div class="size-option" data-size="XL">XL</div>
+                                </div>
+                                <div class="size-guide-link">Size Guide</div>
+                            </div>
+                            
+                            <button class="btn add-to-cart" data-product="Urban Zip Hoodie - Gray" data-price="94.99">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card fade-in" data-category="hoodie">
+                        <div class="product-badge">New</div>
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1578763460782-62e743b71564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');">
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+                                <button class="action-btn quick-view" aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Minimalist Hoodie - Navy</h3>
+                            <div class="product-price">$89.99</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            
+                            <div class="size-selector">
+                                <p>Select Size:</p>
+                                <div class="size-options">
+                                    <div class="size-option" data-size="S">S</div>
+                                    <div class="size-option" data-size="M">M</div>
+                                    <div class="size-option" data-size="L">L</div>
+                                    <div class="size-option" data-size="XL">XL</div>
+                                </div>
+                                <div class="size-guide-link">Size Guide</div>
+                            </div>
+                            
+                            <button class="btn add-to-cart" data-product="Minimalist Hoodie - Navy" data-price="89.99">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card fade-in" data-category="hoodie">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1586366775917-5d71422818b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');">
+                            <div class="product-actions">
+                                <button class="action-btn wishlist-btn" aria-label="Add to Wishlist"><i class="far fa-heart"></i></button>
+                                <button class="action-btn quick-view" aria-label="Quick View"><i class="far fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Oversized Hoodie - Olive</h3>
+                            <div class="product-price">$84.99</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            
+                            <div class="size-selector">
+                                <p>Select Size:</p>
+                                <div class="size-options">
+                                    <div class="size-option" data-size="S">S</div>
+                                    <div class="size-option" data-size="M">M</div>
+                                    <div class="size-option" data-size="L">L</div>
+                                    <div class="size-option" data-size="XL">XL</div>
+                                </div>
+                                <div class="size-guide-link">Size Guide</div>
+                            </div>
+                            
+                            <button class="btn add-to-cart" data-product="Oversized Hoodie - Olive" data-price="84.99">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Volume 2 Page -->
+        <div id="volume2-page" class="volume-page">
+            <div class="container">
+                <div class="volume-header">
+                    <h2>Volume 2 Collection <span class="coming-soon-badge">Coming Soon</span></h2>
+                    <button class="home-btn" id="home-btn-volume2">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                </div>
+                
+                <p class="volume-description">Our upcoming collection featuring streetwear staples designed for everyday wear with attention to detail and comfort. Stay tuned for the release of Volume 2!</p>
+                
+                <div style="text-align: center; padding: 60px 0;">
+                    <i class="fas fa-clock" style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;"></i>
+                    <h3>Coming Soon</h3>
+                    <p>We're working hard to bring you the next collection. Sign up for our newsletter to be the first to know when Volume 2 drops!</p>
+                    <a href="#" class="btn" style="margin-top: 20px;">Notify Me</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Volume 3 Page -->
+        <div id="volume3-page" class="volume-page">
+            <div class="container">
+                <div class="volume-header">
+                    <h2>Volume 3 Collection <span class="coming-soon-badge">Coming Soon</span></h2>
+                    <button class="home-btn" id="home-btn-volume3">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                </div>
+                
+                <p class="volume-description">Exclusive designs with limited availability. Get yours before they're gone forever. Volume 3 will feature our most premium materials and innovative designs yet.</p>
+                
+                <div style="text-align: center; padding: 60px 0;">
+                    <i class="fas fa-gem" style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;"></i>
+                    <h3>Limited Edition Coming Soon</h3>
+                    <p>This collection will be our most exclusive yet. Sign up for early access to secure your pieces before they sell out.</p>
+                    <a href="#" class="btn" style="margin-top: 20px;">Get Early Access</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>Second Triangle</h3>
+                        <p>Premium streetwear brand offering high-quality hoodies and apparel for the modern urban lifestyle.</p>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Shop</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">All Products</a></li>
+                            <li><a href="#">Hoodies</a></li>
+                            <li><a href="#">T-Shirts</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">New Arrivals</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Support</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">Size Guide</a></li>
+                            <li><a href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Contact</h3>
+                        <ul class="footer-links">
+                            <li><i class="fas fa-map-marker-alt"></i> 123 Street, City, Country</li>
+                            <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                            <li><i class="fas fa-envelope"></i> info@secondtriangle.com</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2023 Second Triangle. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Cart Sidebar -->
+        <div class="cart-sidebar" id="cart-sidebar">
+            <div class="cart-header">
+                <h3 class="cart-title">Your Cart</h3>
+                <button class="close-cart" aria-label="Close Cart"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button class="checkout-btn" id="checkout-btn">Checkout</button>
+            </div>
+        </div>
+
+        <!-- Checkout Modal -->
+        <div class="checkout-modal" id="checkout-modal">
+            <h3>Checkout</h3>
+            <p>Thank you for your purchase! This is a demo website, so no actual transaction will be processed.</p>
+            <div class="checkout-modal-buttons">
+                <button class="btn" id="confirm-checkout">Confirm</button>
+                <button class="btn btn-outline" id="cancel-checkout">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Size Guide Modal -->
+        <div class="size-guide-modal" id="size-guide-modal">
+            <h3>Size Guide</h3>
+            <p>Find your perfect fit with our size guide. Measurements are in inches.</p>
+            
+            <table class="size-table">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Chest</th>
+                        <th>Length</th>
+                        <th>Sleeve</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>S</td>
+                        <td>34-36</td>
+                        <td>26</td>
+                        <td>24.5</td>
+                    </tr>
+                    <tr>
+                        <td>M</td>
+                        <td>38-40</td>
+                        <td>27</td>
+                        <td>25.5</td>
+                    </tr>
+                    <tr>
+                        <td>L</td>
+                        <td>42-44</td>
+                        <td>28</td>
+                        <td>26.5</td>
+                    </tr>
+                    <tr>
+                        <td>XL</td>
+                        <td>46-48</td>
+                        <td>29</td>
+                        <td>27.5</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>How to measure:</strong></p>
+            <ul>
+                <li><strong>Chest:</strong> Measure around the fullest part of your chest</li>
+                <li><strong>Length:</strong> Measure from the highest point of the shoulder to the bottom hem</li>
+                <li><strong>Sleeve:</strong> Measure from the center back of the neck to the wrist</li>
+            </ul>
+            
+            <button class="btn" id="close-size-guide">Close</button>
+        </div>
+
+        <!-- Quick View Modal -->
+        <div class="quick-view-modal" id="quick-view-modal">
+            <div class="quick-view-content">
+                <div class="quick-view-image" id="quick-view-image"></div>
+                <div class="quick-view-details" id="quick-view-details">
+                    <!-- Content akan diisi secara dinamis -->
+                </div>
+            </div>
+            <button class="close-cart" id="close-quick-view" style="position: absolute; top: 15px; right: 15px;"><i class="fas fa-times"></i></button>
+        </div>
+
+        <!-- Floating Size Guide Button -->
+        <div class="floating-size-guide" id="floating-size-guide" title="Size Guide">
+            <i class="fas fa-ruler"></i>
+        </div>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Notification -->
+        <div class="notification" id="notification"></div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
